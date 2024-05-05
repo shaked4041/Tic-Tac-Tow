@@ -1,14 +1,9 @@
-import Menu from './pages/Menu'
 import './App.css'
 
-function App() {
-  
 
+export default function App() {
   return (
-   
-     <Menu/>
-   
+    <div>
+    </div>
   )
 }
-
-export default App
