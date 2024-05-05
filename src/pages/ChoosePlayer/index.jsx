@@ -12,11 +12,12 @@ export default function ChoosePlayer() {
     <div className={styles.container}>
       <div className={styles.backButton}>
         <BackButton />
-        </div>
-
-      <div className={styles.elipse}>
+      </div>
+      <div className={styles.headlineWrapper}>
+        <div className={styles.elipse} /> 
         <span className={styles.text}>Choose Player</span>
-        </div>
+      </div>
+
       <div className={styles.table}>
         <Wrrapper>
           <BackCard height="150px" width="150px">
