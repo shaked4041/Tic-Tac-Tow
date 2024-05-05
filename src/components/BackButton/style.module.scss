@@ -1,0 +1,16 @@
+@import '../../vars';
+
+.container{
+    width: 50px;
+    height: 50px;
+    border-radius: 9px;
+    background-color: $mainColor;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .arrow{
+        color: white;
+        border: 1px solid #B28100;
+    }
+}
