@@ -7,10 +7,15 @@
     align-items: center;
     justify-content:center ;
     gap: 50px;
+    .img{
+        height: 157px;
+        width: 225px;
+        
+    }
 
     .btn1 {
-        grid-template-columns: 50px;
-        padding-top: 100px;
+        // grid-template-columns: 50px;
+        padding-top: 200px;
        
     }
 
