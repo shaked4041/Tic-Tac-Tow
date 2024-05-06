@@ -1,10 +1,10 @@
 import './App.css'
-import Menu from './pages/Menu'
+import JoinGame from './pages/JoinGame'
 
 export default function App() {
   return (
     <div>
-      <Menu/>
+      <JoinGame/>
 
     </div>
   )
