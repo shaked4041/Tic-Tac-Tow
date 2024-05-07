@@ -15,29 +15,66 @@ export default function BoardPlayers() {
     const [bColor, setBColor] = useState(null)
     const [isXNext, setIsXNext] = useState(false);
     const [win, setWin] = useState(false);
-
-    // useEffect(() => {
-    //     checkWin();
-    // }, [clickedCards]);
-    
-
-    const checkWin = () => {
-        // alert('hi')
-        // setTimeout(() => {
-        //     console.log("This message will be logged after 2 seconds.");
-        // }, 2000);
+    const [xClicks, setXClicks] = useState([]);
+    const [oClicks, setOClicks] = useState([]);
+    const [winCombo, setWinCombo] = useState(null)
+    let amtOfCards = 9
+    let rootOfAmnt = Math.sqrt(amtOfCards);
 
 
-        
+    const generateWinningCombos = (size) => {
+        const combos = [];
+        // Rows
+        for (let i = 0; i < size; i++) {
+            const rowCombo = [];
+            for (let j = 0; j < size; j++) {
+                rowCombo.push(i * size + j);
             }
+            combos.push(rowCombo);
+        }
+        // Columns
+        for (let i = 0; i < size; i++) {
+            const colCombo = [];
+            for (let j = 0; j < size; j++) {
+                colCombo.push(i + j * size);
+            }
+            combos.push(colCombo);
+        }
+        // Diagonals
+        const diag1 = [];
+        const diag2 = [];
+        for (let i = 0; i < size; i++) {
+            diag1.push(i * (size + 1));
+            diag2.push((i + 1) * (size - 1));
+        }
+        combos.push(diag1, diag2);
+        return combos;
+    };
+
+    let winningCombos = generateWinningCombos(rootOfAmnt);
+
+    const checkWin = (playerClicks, player) => {
+        for (let combo of winningCombos) {
+            if (combo.every(index => playerClicks.includes(index))) {
+                setWinCombo(combo)
+                handleWin();
+                return;
+            }
+        }
+    };
 
     const handleClick = (index) => {
-        if (clickedCards[index] === null) {
+        if (clickedCards[index] === null && !win) {
             const newClickedCards = [...clickedCards];
             newClickedCards[index] = isXNext ? options[0] : options[1];
             setClickedCards(newClickedCards);
+            if (isXNext) {
+                setXClicks(prevClicks => [...prevClicks, index]);
+            } else {
+                setOClicks(prevClicks => [...prevClicks, index]);
+            }
+            checkWin(isXNext ? [...xClicks, index] : [...oClicks, index], isXNext ? 'x' : 'o');
             setIsXNext(!isXNext);
-            checkWin()
         }
     };
 
@@ -45,12 +82,20 @@ export default function BoardPlayers() {
         setWin(true)
         setBColor('#D1D1D1')
     };
+          let notWinIndex = []
+    useEffect(() => {
+        if (winCombo !== null) {
+            clickedCards.forEach((card, index) => {
+                if (card !== null && !winCombo.includes(index)) {
+                    notWinIndex.push(index)
+                }
+            });
+            console.log(notWinIndex);
+        }
+    }, [winCombo]);
 
     const backCardComponents = clickedCards.map((shape, index) => (
-        <div onClick={() => {
-            handleClick(index)
-            // checkWin()
-        }
+        <div onClick={() => { handleClick(index) }
         } key={index}>
             <BackCard width={'80px'} height={'80px'} color={shape ? null : bColor}>
                 <div>
@@ -62,11 +107,6 @@ export default function BoardPlayers() {
 
     return (
         <div className={styles.container}>
-            <svg className={styles.borderPhoto} width="1282" height="30" viewBox="0 0 1282 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <g filter="url(#filter0_d_45_343)">
-                    <path d="M1288 29H0L639.5 24.2174L1288 7L1288 29Z" fill="#B28100" />
-                </g>
-            </svg>
             <div className={styles.yellowBlock}></div>
             <div className={styles.wrapper}>
                 <Wrapper>
@@ -83,7 +123,6 @@ export default function BoardPlayers() {
                 <MainButton width={'170px'} height={'70px'} text={'BACK'} />
             </div>
 
-            <button onClick={handleWin}>win</button>
         </div>
     )
 }
