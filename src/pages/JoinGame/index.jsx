@@ -1,7 +1,7 @@
 import React from 'react'
 import styles from './style.module.scss'
 import BackButton from '../../components/BackButton'
-import Wrrapper from '../../components/Wrrapper'
+import Wrapper from '../../components/Wrapper'
 import MainButton from '../../components/MainButton'
 
 const text1 = "join"
@@ -23,7 +23,7 @@ export default function index() {
                     <span className={styles.titel}>join to a game</span>
                 </div>
 
-                <Wrrapper><span className={styles.enterCode}>enter code game</span></Wrrapper>
+                <Wrapper><span className={styles.enterCode}>enter code game</span></Wrapper>
                 
                 <MainButton text={text1} height={height1} width={width1}></MainButton>
 
