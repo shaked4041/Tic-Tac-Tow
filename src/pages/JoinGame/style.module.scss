@@ -1,0 +1,52 @@
+.joinGame{
+    background-color: #3D7AD6;
+    height: 100vh;
+    width: 100vw;
+    
+    .back{
+       padding:  20px;
+    }
+    .center{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        .fTitel {
+            position: relative;
+            top: -10%;
+            
+            .elips {
+                position: absolute;
+                top: -10%;
+                left: -10%;
+                background-color: #23ACF9;
+                opacity: 70%;
+                border-radius: 50%;
+                height: 130%;
+                width: 130%;
+                // transform: translateY(50%);
+                filter: blur(20px);
+            }
+            .titel{
+                font-family: 'Luckiest Guy' ,sans-serif;
+                font-size:42px;
+                color: white;
+                text-shadow: 5px 0   #000000;
+                z-index: 5;
+                position: relative;
+                top: 0;
+            }
+           
+        }
+        .enterCode{ 
+            height: 30px;
+            min-width:  260px;
+            color: #CDCDCD;
+            
+        }
+
+        
+    }
+    
+}
