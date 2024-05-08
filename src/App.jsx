@@ -4,6 +4,7 @@ import ChoosePlayer from './pages/ChoosePlayer/index'
 import JoinGame from './pages/JoinGame/index'
 
 import Menu from './pages/Menu'
+import Waiting from './pages/Waiting'
 
 export default function App() {
   return (
