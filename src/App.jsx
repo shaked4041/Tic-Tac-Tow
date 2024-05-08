@@ -10,6 +10,13 @@ import Waiting from './pages/Waiting'
 export default function App() {
   return (
     <div>
+      {/* <JoinGame/> */}
+
+      {/* <ChoosePlayer/> */}
+      {/* <Menu/> */}
+{/* <Waiting/> */}
+{/* <ChoosePlayer/> */}
+
 <Routes>
   <Route/>
 </Routes>
