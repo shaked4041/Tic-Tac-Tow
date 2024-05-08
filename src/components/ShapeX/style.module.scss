@@ -1,3 +1,7 @@
 .x{
-    z-index: 100;
+    // z-index: 100;
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
 }

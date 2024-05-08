@@ -11,8 +11,8 @@
     .top {
         display: flex;
         flex-direction: row;
-        padding-bottom: 40%;
-        padding-left: 10%;
+        padding-bottom: 100px;
+        padding-left: 20px;
 
 
         .o {
@@ -39,8 +39,9 @@
         width: 300px;
         position: relative;
         // top: -10%;
-        // padding-left: 50%;
-         left: 10%;
+        padding-left: 70px;
+        //  left: 10%;
+        //  padding-bottom: 230px;
 
         .img {
             height: 210px;
@@ -52,14 +53,14 @@
 
         .elips {
             position: absolute;
-            top: -10%;
+            top: -10px;
             // left: -10%;
             background-color: #23ACF9;
             opacity: 70%;
             border-radius: 50%;
 
-            height: 130%;
-            width: 130%;
+            height: 230px;
+            width: 330px;
             // transform: translateY(50%);
             filter: blur(20px);
         }
@@ -68,19 +69,20 @@
     .bottom {
         display: flex;
         flex-direction: row;
-        padding-top: 30%;
-        padding-left: 3%;
+        padding-top:50px;
+        // padding-left: 5px;
 
         .o {
             transform: rotate(20deg);
             filter: blur(2px);
+            padding-right: 20px;
         }
 
         .x {
             transform: rotate(27deg);
             filter: blur(3px);
-            padding-left: 110px;
-            padding-top: 40px;
+            padding-left: 60px;
+            // padding-top: 70px;
             // animation: moveRandomly 5s infinite alternate;
         }
     }
