@@ -6,14 +6,16 @@
     width: 100vw;
     height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
 
     .logo {
-        margin-top: 250px;
+        // margin-top: 250px;
         height: 157px;
         width: 225px;
         position: relative;
-        top: -10%;
+        // top: -10%;
         .img {
             height: 157px;
             width: 225px; 
@@ -34,5 +36,9 @@
             // transform: translateY(50%);
             filter: blur(20px);
         }
+    }
+
+    .o{
+        background-color: aqua;
     }
 }
