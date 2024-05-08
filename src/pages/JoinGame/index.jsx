@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from './style.module.scss'
 import BackButton from '../../components/BackButton'
-import Wrapper from '../../components/Wrapper'
 import MainButton from '../../components/MainButton'
+import Wrapper from '../../components/Wrapper'
 
 const text1 = "join"
 const height1 = '60px'
@@ -12,7 +12,7 @@ const text2 = "create a game"
 const height2 = '70px'
 const width2 = '300px'
 
-export default function index() {
+export default function JoinGame() {
     return (
         <div className={styles.joinGame}>
             <div className={styles.back}><BackButton /></div>
