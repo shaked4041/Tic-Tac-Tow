@@ -9,7 +9,7 @@ import ShapeO from '../../components/ShapeO/index'
 
 export default function BoardPlayers() {
 
-    let options = [<ShapeX />, <ShapeO />]
+    // let options = [<ShapeX {...st} />, <ShapeO {...st} />]
 
     const [clickedCards, setClickedCards] = useState(Array(9).fill(null));
     const [bColor, setBColor] = useState(null)
@@ -18,6 +18,10 @@ export default function BoardPlayers() {
     const [xClicks, setXClicks] = useState([]);
     const [oClicks, setOClicks] = useState([]);
     const [winCombo, setWinCombo] = useState(null)
+    const [notWinIndex, setNotWinIndex] = useState([]);
+    const [options, setOptions] = useState([<ShapeX />, <ShapeO />]);
+
+
     let amtOfCards = 9
     let rootOfAmnt = Math.sqrt(amtOfCards);
 
@@ -53,6 +57,7 @@ export default function BoardPlayers() {
 
     let winningCombos = generateWinningCombos(rootOfAmnt);
 
+
     const checkWin = (playerClicks, player) => {
         for (let combo of winningCombos) {
             if (combo.every(index => playerClicks.includes(index))) {
@@ -82,29 +87,55 @@ export default function BoardPlayers() {
         setWin(true)
         setBColor('#D1D1D1')
     };
-          let notWinIndex = []
     useEffect(() => {
         if (winCombo !== null) {
+            const notWin = [];
             clickedCards.forEach((card, index) => {
                 if (card !== null && !winCombo.includes(index)) {
-                    notWinIndex.push(index)
+                    notWin.push(index);
                 }
             });
-            console.log(notWinIndex);
+            setNotWinIndex(notWin);
         }
-    }, [winCombo]);
+    }, [winCombo, clickedCards]);
+
+    // const backCardComponents = clickedCards.map((shape, index) => {
+    //     let st = notWinIndex.includes(index) ? { fill: '#9B9B9B' } : {};}
+
+    // const backCardComponents = clickedCards.map((shape, index) => (
+    //     <div onClick={() => { handleClick(index) }
+    //     } key={index}>
+    //         <BackCard width={'80px'} height={'80px'} color={shape ? null : bColor}>
+    //             <div>
+    //                 {shape}
+    //             </div>
+    //         </BackCard>
+    //     </div>
+    // ));
+
+
+    // let cards = clickedCards.map((shape, index) => {
+    //     let st = notWinIndex.includes(index) ? { fill: '#9B9B9B' } : {};
+    //     setOptions([<ShapeX {...st} />, <ShapeO {...st} />])
+    // })
+
+      useEffect(() => {
+        // Update options when notWinIndex changes
+        let st = notWinIndex.map(index => notWinIndex.includes(index) ? { fill: '#9B9B9B' } : {});
+        setOptions([<ShapeX {...st} />, <ShapeO {...st} />]);
+    }, [notWinIndex]);
+
 
     const backCardComponents = clickedCards.map((shape, index) => (
-        <div onClick={() => { handleClick(index) }
-        } key={index}>
+        <div onClick={() => handleClick(index)} key={index}>
             <BackCard width={'80px'} height={'80px'} color={shape ? null : bColor}>
                 <div>
                     {shape}
+                    {/* === null ? null : options[isXNext ? 0 : 1] */}
                 </div>
             </BackCard>
         </div>
     ));
-
     return (
         <div className={styles.container}>
             <div className={styles.yellowBlock}></div>
