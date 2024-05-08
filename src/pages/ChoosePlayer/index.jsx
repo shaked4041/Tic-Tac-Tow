@@ -10,6 +10,8 @@ import MainButton from '../../components/MainButton';
 export default function ChoosePlayer() {
   const [x, setX] = useState(0);
   const [o, setO] = useState(0);
+  const [chosenPlayer, setChosenPlayer] = useState(x == 1 ? x : o == 1 ? o : null);
+
 
   const btnTitel = "Let’s play"
   const btnH = "80px"
