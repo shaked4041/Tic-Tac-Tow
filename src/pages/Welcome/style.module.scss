@@ -5,32 +5,59 @@
     background-color: $backroundColor;
     width: 100vw;
     height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+
+
+
+    .top {
+        display: flex;
+        flex-direction: row;
+        padding-bottom: 40%;
+        padding-left: 10%;
+
+
+        .o {
+            filter: blur(2px);
+            padding-left: 150px;
+            padding-top: 60px;
+        }
+
+        .x {
+            transform: rotate(-20deg);
+            filter: blur(2px);
+            padding-right: 20px;
+            padding-top: 40px;
+        }
+    }
 
     .logo {
+        display: flex;
+        // flex-direction: column;
+        justify-content: center;
+        align-items: center;
         // margin-top: 250px;
-        height: 157px;
-        width: 225px;
+        height: 210px;
+        width: 300px;
         position: relative;
         // top: -10%;
+        // padding-left: 50%;
+         left: 10%;
+
         .img {
-            height: 157px;
-            width: 225px; 
+            height: 210px;
+            width: 300px;
             z-index: 5;
             position: relative;
             top: 0;
         }
+
         .elips {
             position: absolute;
             top: -10%;
-            left: -10%;
+            // left: -10%;
             background-color: #23ACF9;
             opacity: 70%;
             border-radius: 50%;
-        
+
             height: 130%;
             width: 130%;
             // transform: translateY(50%);
@@ -38,7 +65,35 @@
         }
     }
 
-    .o{
-        background-color: aqua;
+    .bottom {
+        display: flex;
+        flex-direction: row;
+        padding-top: 30%;
+        padding-left: 3%;
+
+        .o {
+            transform: rotate(20deg);
+            filter: blur(2px);
+        }
+
+        .x {
+            transform: rotate(27deg);
+            filter: blur(3px);
+            padding-left: 110px;
+            padding-top: 40px;
+            // animation: moveRandomly 5s infinite alternate;
+        }
     }
+
+    // @keyframes moveRandomly {
+    //     0% {
+    //         transform: translate(0, 0);
+    //     }
+    //     50%{
+    //         transform: translate(calc(50vw),calc(-10vh));
+    //     }
+    //     100% {
+    //         transform: translate(calc(-50vw), calc(50vh));
+    //     }
+    // }
 }
