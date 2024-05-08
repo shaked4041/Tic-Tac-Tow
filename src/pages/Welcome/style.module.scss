@@ -1,0 +1,38 @@
+@import '../../vars';
+
+.welcomeContainer {
+    font-family: 'Luckiest Guy', sans-serif;
+    background-color: $backroundColor;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+
+    .logo {
+        margin-top: 250px;
+        height: 157px;
+        width: 225px;
+        position: relative;
+        top: -10%;
+        .img {
+            height: 157px;
+            width: 225px; 
+            z-index: 5;
+            position: relative;
+            top: 0;
+        }
+        .elips {
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            background-color: #23ACF9;
+            opacity: 70%;
+            border-radius: 50%;
+        
+            height: 130%;
+            width: 130%;
+            // transform: translateY(50%);
+            filter: blur(20px);
+        }
+    }
+}
