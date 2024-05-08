@@ -6,13 +6,20 @@ import JoinGame from './pages/JoinGame/index'
 import Menu from './pages/Menu'
 import Waiting from './pages/Waiting'
 
+
 export default function App() {
   return (
     <div>
-      {/* <ChoosePlayer/> */}
-      {/* <Menu/> */}
-      <BoardPlayers />
-      {/* <JoinGame/> */}
+<Routes>
+  <Route/>
+</Routes>
     </div>
   )
+
+  //   <div>
+  //     {/* <ChoosePlayer/> */}
+  //     {/* <Menu/> */}
+  //     <BoardPlayers />
+  //     {/* <JoinGame/> */}
+  //   </div>
 }
