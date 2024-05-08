@@ -17,28 +17,32 @@
         align-items: center;
         justify-content: center;
         position: relative;
+        margin-top: 100px;
 
         .elipse {
             position: absolute;
-            top: 0px;
+            top: 30%;
+            left: 0;
             background-color: #23ACF9;
+            opacity: 70%;
             border-radius: 50%;
-            height: 100%;
-            width: 70%;
-            transform: translateY(10px);
-            filter: blur(10px);
+            height: 80%;
+            width: 100%;
+            // transform: translateY(50%);
+            filter: blur(20px);
         }
 
         .text {
             color: white;
-            -webkit-text-stroke-width: 2px;
-            -webkit-text-stroke-color: black;
+            // -webkit-text-stroke-width: 2px;
+            // -webkit-text-stroke-color: black;
             display: flex;
             z-index: 2;
             align-items: center;
             justify-content: center;
             margin-top: 30px;
             font-size: 36px;
+            text-shadow: 5px 0 #000000;
         }
     }
 
@@ -47,21 +51,27 @@
         align-items: center;
         justify-content: center;
         height: 150px;
-        margin-top: 100px;
+        margin-top: 60px;
 
         .clicked {
             transition: all ease-in-out 0.3s;
             transform: scale(2);
         }
 
-        .notClicked{
+        .notClicked {
             background-color: grey;
         }
 
-        .innerClass{
+        .innerClass {
             display: flex;
             align-items: center;
             justify-content: center;
         }
+    }
+    .btn{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 80px;
     }
 }

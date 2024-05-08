@@ -5,10 +5,15 @@ import Wrapper from '../../components/Wrapper';
 import ShapeX from '../../components/ShapeX';
 import ShapeO from '../../components/ShapeO';
 import BackCard from '../../components/BackCard';
+import MainButton from '../../components/MainButton';
 
 export default function ChoosePlayer() {
   const [x, setX] = useState(0);
   const [o, setO] = useState(0);
+
+  const btnTitel = "Let’s play"
+  const btnH = "80px"
+  const btnW = "190px"
 
   const handleX = () => {
     if (x == 1) {
@@ -59,6 +64,11 @@ export default function ChoosePlayer() {
           </div>
         </Wrapper>
       </div >
+
+      <div className={styles.btn}>
+        <MainButton text={btnTitel} height={btnH} width={btnW} />
+      </div>
+
     </div >
   );
 }
