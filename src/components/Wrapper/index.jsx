@@ -2,10 +2,11 @@ import React from 'react'
 import styles from './style.module.scss'
 
 
-export default function Wrapper({ children }) {
+export default function Wrapper({ children ,titel}) {
   return (
-    <div className={styles.container}>
+    <fieldset className={styles.container}>
+      <legend className={styles.titel} >{titel}</legend>
       {children}
-    </div>
+    </fieldset>
   )
 }

@@ -6,14 +6,15 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-     gap: 30px;
+    gap: 30px;
 
     .logo {
 
         height: 130px;
         width: 178px;
         position: relative;
-        top: -10%;
+        // top: -10%;
+
         .img {
             height: 130px;
             width: 178px;
@@ -21,6 +22,7 @@
             position: relative;
             top: 0;
         }
+
         .elips {
             position: absolute;
             top: -10%;
@@ -42,11 +44,11 @@
         text-align: center;
         // top: -20%;
         // padding-top: 100px;
-        
+
     }
 
     .code {
-        height:55px;
+        height: 55px;
         width: 320px;
         font-size: 60px;
         color: #bab9b9;
@@ -57,6 +59,7 @@
         text-align: center;
         top: -20%;
     }
+
     .img {
         height: 130px;
         width: 178px;
@@ -65,11 +68,11 @@
         top: 0;
     }
 
-    .btn{
+    .btn {
         display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 150px;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        gap: 150px;
     }
 }

@@ -12,8 +12,8 @@ export default function
         <div className={styles.waiting}>
             <div className={styles.back}><BackButton /></div>
             <div className={styles.center}>
-                <span className={styles.titel}>your code</span>
-                    <Wrapper   >
+                
+                    <Wrapper titel={'your code'}  >
                         <div className={styles.code} >
                             {code}
                         </div>
