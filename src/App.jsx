@@ -17,7 +17,7 @@ import { useState } from 'react'
 export default function App() {
   const [roomId, setRoomId] = useState(null)
     return (
-              <SocketProvider>
+              // <SocketProvider>
         <div>
     <Routes>
     <Route path="/" element={<Welcome/>}/>
@@ -30,7 +30,7 @@ export default function App() {
     <Route path="/waitingJoin" element={<WaitingJoin/>}/>
     </Routes>
         </div>
-              </SocketProvider>
+              // </SocketProvider>
       )
     }
     
