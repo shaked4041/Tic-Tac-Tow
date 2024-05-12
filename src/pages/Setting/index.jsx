@@ -2,8 +2,13 @@ import React from 'react'
 import styles from './style.module.scss'
 import Wrapper from '../../components/Wrapper'
 import BackButton from '../../components/BackButton'
+import SetButton from '../../components/SetButton'
+import { useNavigate } from 'react-router-dom';
 
 export default function index() {
+
+    const nav = useNavigate()
+
     return (
         <div className={styles.setting}>
             <div className={styles.logo} >
@@ -22,9 +27,9 @@ export default function index() {
 
             <div className={styles.btn}>
                 <div className={styles.back}><BackButton /></div>
-                <div className={styles.back}><BackButton icon={<svg width="137" height="115" viewBox="0 0 137 115" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <div className={styles.back}><SetButton icon={<svg width="137" height="115" viewBox="0 0 137 115" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M45.905 71.1867L114.65 2.44115L134.879 22.6695L66.1333 91.4148L44.9893 112.559L23.7005 91.2699L2.12132 69.6906L22.2045 49.6075L43.7837 71.1867L44.8443 72.2473L45.905 71.1867Z" fill="white" stroke="#B28100" stroke-width="3" />
-                </svg>} />
+                </svg>} onClick={()=> nav('/menu')} />
                 </div>
             </div>
         </div>

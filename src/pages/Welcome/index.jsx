@@ -2,6 +2,7 @@ import React from 'react'
 import styles from './style.module.scss';
 import ShapeO from '../../components/ShapeO'
 import ShapeX from '../../components/ShapeX'
+import { useNavigate } from 'react-router-dom';
 export default function Welcome() {
 
   const nav = useNavigate()

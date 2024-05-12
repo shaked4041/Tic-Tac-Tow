@@ -22,6 +22,7 @@ export default function App() {
     <Routes>
     <Route path="/" element={<Welcome/>}/>
     <Route path="/menu" element={<Menu/>}/>
+    <Route path="/setting" element={<Setting/>}/>
     <Route path="/joinGame" element={<JoinGame setRoomId={setRoomId}/>}/>
     <Route path="/waiting" element={<Waiting/>} roomId={roomId}/>
     <Route path="/choosePlayer" element={<ChoosePlayer/>}/>
