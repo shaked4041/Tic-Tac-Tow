@@ -27,8 +27,8 @@
                 background-color: #23ACF9;
                 opacity: 70%;
                 border-radius: 50%;
-                height: 130%;
-                width: 130%;
+                height: 100%;
+                width: 100%;
                 // transform: translateY(50%);
                 filter: blur(20px);
             }
@@ -46,17 +46,22 @@
         }
 
         .enterCode {
-            // height: 20px;
-            // min-width:  260px;
-            color: #CDCDCD;
-            // צריך לגרום לזה להיות בגודל הרצוי
             padding: 10px;
             margin: 10px;
+            border: none;
+            outline: none;
+
+            &:focus {
+                // color: grey;
+            }
+
+            &::placeholder {
+                color: #CDCDCD;
+            }
         }
 
         .btn1 {
-            padding: 20px;
-            // background-color: #000000;
+            margin-top: 20px;
         }
 
         .or {
@@ -64,10 +69,11 @@
             flex-direction: row;
             justify-content: center;
             align-items: center;
-            padding:30px;
+            padding: 30px;
+            width: 100%;
 
             .line {
-                width: 100px;
+                width: 20%;
                 height: 4px;
                 background-color: #dedddd85;
                 margin: 20px;

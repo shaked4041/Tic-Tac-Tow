@@ -6,12 +6,14 @@ import ShapeX from '../../components/ShapeX';
 import ShapeO from '../../components/ShapeO';
 import BackCard from '../../components/BackCard';
 import MainButton from '../../components/MainButton';
+import { useNavigate } from 'react-router-dom';
 
 export default function ChoosePlayer() {
   const [x, setX] = useState(0);
   const [o, setO] = useState(0);
   const [chosenPlayer, setChosenPlayer] = useState(x == 1 ? x : o == 1 ? o : null);
 
+  const nav = useNavigate()
 
   const btnTitel = "Let’s play"
   const btnH = "80px"
@@ -68,7 +70,7 @@ export default function ChoosePlayer() {
       </div >
 
       <div className={styles.btn}>
-        <MainButton text={btnTitel} height={btnH} width={btnW} />
+        <MainButton text={btnTitel} height={btnH} width={btnW} onClick={()=> nav('/boardPlayers')}/>
       </div>
 
     </div >

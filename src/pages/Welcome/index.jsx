@@ -3,6 +3,12 @@ import styles from './style.module.scss';
 import ShapeO from '../../components/ShapeO'
 import ShapeX from '../../components/ShapeX'
 export default function Welcome() {
+
+  const nav = useNavigate()
+
+  const handleClick = () =>{
+    nav('/menu')
+  }
   return (
     <div className={styles.welcomeContainer}>
 
