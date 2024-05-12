@@ -3,6 +3,7 @@ import BoardPlayers from './pages/BoardPlayers'
 import ChoosePlayer from './pages/ChoosePlayer'
 import JoinGame from './pages/JoinGame'
 import Menu from './pages/Menu'
+import Setting from './pages/Setting'
 import Waiting from './pages/Waiting'
 import Welcome from './pages/Welcome'
 import WaitingJoin from './pages/WaitingJoin'
@@ -15,6 +16,7 @@ export default function App() {
 <Routes>
 <Route path="/" element={<Welcome/>}/>
 <Route path="/menu" element={<Menu/>}/>
+<Route path="/setting" element={<Setting/>}/>
 <Route path="/joinGame" element={<JoinGame/>}/>
 <Route path="/waiting" element={<Waiting/>}/>
 <Route path="/choosePlayer" element={<ChoosePlayer/>}/>
