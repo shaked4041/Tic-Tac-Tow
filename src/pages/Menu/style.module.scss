@@ -2,25 +2,31 @@
     background-color: #3D7AD6;
     height: 100vh;
     width: 100vw;
+   
+    
+.center{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 50px;
-
+    gap: 150px;
+    // top: -10%;
+    padding-top: 100px;
     .logo {
 
-        height: 157px;
-        width: 225px;
+        height: 130px;
+        width: 190px;
         position: relative;
-        top: -10%;
+        
+
         .img {
-            height: 157px;
-            width: 225px; 
+            height: 130px;
+            width: 190px;
             z-index: 5;
             position: relative;
             top: 0;
         }
+
         .elips {
             position: absolute;
             top: -10%;
@@ -28,22 +34,25 @@
             background-color: #23ACF9;
             opacity: 70%;
             border-radius: 50%;
-        
+
             height: 130%;
             width: 130%;
             // transform: translateY(50%);
             filter: blur(20px);
         }
     }
-
-    .btn1 {
-        // grid-template-columns: 50px;
-        padding-top: 200px;
-
-    }
-
-    .btn2 {
-        padding-top: 200px;
+.btns{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+}
+    .btnset {
+        color: #B28100;
+       padding-left: 80%;
+       padding-top: 45%;
 
     }
 

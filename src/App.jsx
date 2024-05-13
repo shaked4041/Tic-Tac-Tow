@@ -17,11 +17,12 @@ import { useState } from 'react'
 export default function App() {
   const [roomId, setRoomId] = useState(null)
     return (
-              <SocketProvider>
+              // <SocketProvider>
         <div>
     <Routes>
     <Route path="/" element={<Welcome/>}/>
     <Route path="/menu" element={<Menu/>}/>
+    <Route path="/setting" element={<Setting/>}/>
     <Route path="/joinGame" element={<JoinGame setRoomId={setRoomId}/>}/>
     <Route path="/waiting" element={<Waiting/>} roomId={roomId}/>
     <Route path="/choosePlayer" element={<ChoosePlayer/>}/>
@@ -29,7 +30,7 @@ export default function App() {
     <Route path="/waitingJoin" element={<WaitingJoin/>}/>
     </Routes>
         </div>
-              </SocketProvider>
+              // </SocketProvider>
       )
     }
     
