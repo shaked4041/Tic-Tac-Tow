@@ -3,7 +3,7 @@ import styles from './style.module.scss'
 import MainButton from '../../components/MainButton'
 import { useNavigate } from 'react-router-dom';
 
-export default function index() {
+export default function Menu() {
 
   const text1 = "play solo"
   const text2 = "play with a friend"

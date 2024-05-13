@@ -1,23 +1,39 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './style.module.scss'
 import BackButton from '../../components/BackButton'
 import Wrapper from '../../components/Wrapper'
 import Spinner from '../../components/Spinner'
+import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import useSocket from '../../socket'
 
-const code = 123456 //צריך לבוא קוד רנדומלי
-const titel= "your code"
-export default function
-    () {
+export default function Waiting() {
+    const { roomNumber } = useParams();
+    const [code, setCode] = useState('')
+    const nav = useNavigate()
+    const socket = useSocket();
+
+    useEffect(() => {
+        setCode(roomNumber);
+        socket.on('connectPlayer2', (msg)=>{
+            console.log(msg);
+            nav('/choosePlayer')
+        })
+        // 
+    }, [roomNumber]);
+
+    const titel = "your code"
+
     return (
         <div className={styles.waiting}>
             <div className={styles.back}><BackButton /></div>
             <div className={styles.center}>
                 <span className={styles.titel}>your code</span>
-                    <Wrapper   >
-                        <div className={styles.code} >
-                            {code}
-                        </div>
-                    </Wrapper>
+                <Wrapper   >
+                    <div className={styles.code} >
+                        {code}
+                    </div>
+                </Wrapper>
                 <div className={styles.spinner}>
                     <Spinner />
                 </div>

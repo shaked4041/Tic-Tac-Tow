@@ -16,15 +16,17 @@ import { useState } from 'react'
 
 export default function App() {
   const [roomId, setRoomId] = useState(null)
+  // const [isXNext, setIsXNext] = useState(true);
+
     return (
               <SocketProvider>
         <div>
     <Routes>
     <Route path="/" element={<Welcome/>}/>
     <Route path="/menu" element={<Menu/>}/>
-    <Route path="/joinGame" element={<JoinGame setRoomId={setRoomId}/>}/>
-    <Route path="/waiting" element={<Waiting/>} roomId={roomId}/>
-    <Route path="/choosePlayer" element={<ChoosePlayer/>}/>
+    <Route path="/joinGame" element={<JoinGame/>}/>
+    <Route path="/waiting/:roomNumber" element={<Waiting/>}/>
+    <Route path="/choosePlayer" element={<ChoosePlayer />}/>
     <Route path="/boardPlayers" element={<BoardPlayers/>}/>
     <Route path="/waitingJoin" element={<WaitingJoin/>}/>
     </Routes>

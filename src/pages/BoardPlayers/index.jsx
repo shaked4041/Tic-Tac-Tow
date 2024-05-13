@@ -6,37 +6,47 @@ import MainButton from '../../components/MainButton/index';
 import ShapeX from '../../components/ShapeX/index';
 import ShapeO from '../../components/ShapeO/index';
 import { useNavigate } from 'react-router-dom';
-
+import useSocket from '../../socket';
+// { isXNext, setIsXNext }
 const BoardPlayers = () => {
     const amtOfCards = 9;
     const [clickedCells, setClickedCells] = useState(Array(amtOfCards).fill(null));
-    const [isXNext, setIsXNext] = useState(true);
+    // const [isXNext, setIsXNext] = useState(true);
     const [win, setWin] = useState(false);
     const [bColor, setBColor] = useState(null);
     const [options] = useState([<ShapeX />, <ShapeO />]);
     const [winCombo, setWinCombo] = useState([]);
-     const nav = useNavigate()
+    const [currentTurn, setCurrentTurn] = useState('')
+    const nav = useNavigate()
+    const socket = useSocket();
+    const isMyTurn = currentTurn === socket.id
 
+    console.log({ id: socket.id });
     useEffect(() => {
         if (checkWinner()) {
             setWin(true);
-            console.log(`${!isXNext ? 'X' : 'O'} is the winner`);
+            // console.log(`${!isXNext ? 'X' : 'O'} is the winner`);
             setBColor('#D1D1D1');
             updateCellBackground();
         }
-    }, [clickedCells, isXNext]);
+    }, [clickedCells]);
+
 
     useEffect(() => {
-        console.log(winCombo);
-    }, [winCombo]);
+        socket.on('move', (updatedArr, turn, isWin) => {
+            setClickedCells(updatedArr)
+            setCurrentTurn(turn)
+        })
+        socket.emit('get-board')
+        socket.on('get-board', (currentTurn) => setCurrentTurn(currentTurn))
+
+    }, [])
 
     const handleClick = (index) => {
+        socket.emit('move', index)
         if (clickedCells[index] !== null || win) return;
-
-        const newClickedCells = [...clickedCells];
-        newClickedCells[index] = isXNext ? options[0] : options[1];
-        setClickedCells(newClickedCells);
-        setIsXNext(!isXNext);
+        if (!isMyTurn) return;
+        // setIsXNext(!isXNext);
     };
 
     const checkWinner = () => {
@@ -93,7 +103,8 @@ const BoardPlayers = () => {
         <div onClick={() => handleClick(index)} key={index} className={styles.gridItem}>
             <BackCard width={'80px'} height={'80px'} color={clickedCells[index] ? null : bColor}>
                 <div>
-                    {clickedCells[index]}
+                    {clickedCells[index] === 'o' ? <ShapeO /> :
+                        clickedCells[index] === 'x' ? <ShapeX /> : null}
                 </div>
             </BackCard>
         </div>
@@ -106,13 +117,13 @@ const BoardPlayers = () => {
             <div className={styles.yellowBlock}></div>
             <div className={styles.wrapper}>
                 <Wrapper>
-                    <div className={styles.gridContainer}>
+                    <div className={styles.gridContainer} >
                         {gridItems}
                     </div>
                 </Wrapper>
             </div>
             <div className={styles.button}>
-                <MainButton width={'170px'} height={'70px'} text={'BACK'} onClick={()=> nav('/menu')}/>
+                <MainButton width={'170px'} height={'70px'} text={'BACK'} onClick={() => nav('/menu')} />
             </div>
         </div>
     );

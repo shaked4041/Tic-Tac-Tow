@@ -2,6 +2,9 @@ import React from 'react'
 import styles from './style.module.scss';
 import ShapeO from '../../components/ShapeO'
 import ShapeX from '../../components/ShapeX'
+import { useNavigate } from "react-router-dom"
+
+
 export default function Welcome() {
 
   const nav = useNavigate()
@@ -10,7 +13,7 @@ export default function Welcome() {
     nav('/menu')
   }
   return (
-    <div className={styles.welcomeContainer}>
+    <div className={styles.welcomeContainer} onClick={handleClick}>
 
       <div className={styles.top}>
         <div className={styles.x} >

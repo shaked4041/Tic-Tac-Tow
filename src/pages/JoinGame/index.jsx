@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './style.module.scss'
 import BackButton from '../../components/BackButton'
 import MainButton from '../../components/MainButton'
 import Wrapper from '../../components/Wrapper'
 import { useNavigate } from 'react-router-dom';
+import useSocket from '../../socket'
 
-export default function JoinGame({ setRoomId }) {
+export default function JoinGame() {
 
     const [code, setCode] = useState('');
+    const [roomNumber, setRoomNumber] = useState('');
 
     const text1 = "join"
     const height1 = '60px'
@@ -18,17 +20,32 @@ export default function JoinGame({ setRoomId }) {
     const width2 = '300px'
 
     const nav = useNavigate()
+    const socket = useSocket();
 
     const handleInputChange = (e) => {
         setCode(e.target.value);
-      };
+    };
 
-    
-  const handleJoinClick = () => {
-    console.log("Entered code:", code);
-    setRoomId(code)
-    // Do whatever you want with the code here
-  };
+
+    const handleJoinClick = () => {
+        socket.emit("room", code)
+        socket.on('connectPlayer2', (msg) => {
+            console.log(msg)
+            nav('/waitingJoin')
+        })
+    };
+
+    useEffect(() => {
+        socket.on('createGame', (roomNumber) => {
+            console.log("Received room number:", roomNumber);
+            setRoomNumber(roomNumber)
+            nav(`/waiting/${roomNumber}`);
+        });
+    }, [socket])
+
+    const createGame = () => {
+        socket.emit('createGame');
+    };
 
     return (
         <div className={styles.joinGame}>
@@ -39,10 +56,6 @@ export default function JoinGame({ setRoomId }) {
                     <div className={styles.elips}></div>
                     <span className={styles.titel}>join to a game</span>
                 </div>
-
-                {/* <div className={styles.enterCode}>
-                    <Wrapper><span className={styles.enterCode}>enter code game</span></Wrapper>
-                </div> */}
                 <Wrapper>
                     <input
                         type="text"
@@ -64,7 +77,7 @@ export default function JoinGame({ setRoomId }) {
                 </div>
 
                 <div className={styles.btn1}>
-                    <MainButton text={text2} height={height2} width={width2} onClick={() => nav('/waiting')}></MainButton>
+                    <MainButton text={text2} height={height2} width={width2} onClick={createGame}></MainButton>
                 </div>
             </div>
 

@@ -1,10 +1,22 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './style.module.scss'
 import Spinner from '../../components/Spinner'
 import BackButton from '../../components/BackButton'
+import { useNavigate } from 'react-router-dom';
+import useSocket from '../../socket';
 
-export default function
-    () {
+
+export default function waitingJoin() {
+    
+    const socket = useSocket();
+    const nav = useNavigate()
+
+    useEffect(() => {
+        socket.on('startPlay', ()=>{
+          nav('/boardPlayers');
+        })
+      }, [socket])
+
     return (
         <div className={styles.waitingJoin}>
 
