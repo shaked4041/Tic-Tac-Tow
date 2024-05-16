@@ -28,12 +28,12 @@ export default function Waiting() {
         <div className={styles.waiting}>
             <div className={styles.back}><BackButton /></div>
             <div className={styles.center}>
-                <span className={styles.titel}>your code</span>
-                <Wrapper   >
-                    <div className={styles.code} >
-                        {code}
-                    </div>
-                </Wrapper>
+                
+                    <Wrapper titel={'your code'}  >
+                        <div className={styles.code} >
+                            {code}
+                        </div>
+                    </Wrapper>
                 <div className={styles.spinner}>
                     <Spinner />
                 </div>

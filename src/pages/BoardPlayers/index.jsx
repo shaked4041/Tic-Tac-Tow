@@ -7,12 +7,12 @@ import ShapeX from '../../components/ShapeX/index';
 import ShapeO from '../../components/ShapeO/index';
 import { useNavigate } from 'react-router-dom';
 import useSocket from '../../socket';
-// { isXNext, setIsXNext }
+
+
 const BoardPlayers = () => {
     const amtOfCards = 9;
     const [clickedCells, setClickedCells] = useState(Array(amtOfCards).fill(null));
-    // const [isXNext, setIsXNext] = useState(true);
-    const [win, setWin] = useState(false);
+    const [isWin, setIsWin] = useState(null);
     const [bColor, setBColor] = useState(null);
     const [options] = useState([<ShapeX />, <ShapeO />]);
     const [winCombo, setWinCombo] = useState([]);
@@ -22,81 +22,40 @@ const BoardPlayers = () => {
     const isMyTurn = currentTurn === socket.id
 
     console.log({ id: socket.id });
-    useEffect(() => {
-        if (checkWinner()) {
-            setWin(true);
-            // console.log(`${!isXNext ? 'X' : 'O'} is the winner`);
-            setBColor('#D1D1D1');
-            updateCellBackground();
-        }
-    }, [clickedCells]);
-
 
     useEffect(() => {
-        socket.on('move', (updatedArr, turn, isWin) => {
+        socket.on('move', (updatedArr, turn, winner) => {
+            if (winner != null) {
+                setIsWin(winner)
+            }
             setClickedCells(updatedArr)
             setCurrentTurn(turn)
         })
         socket.emit('get-board')
         socket.on('get-board', (currentTurn) => setCurrentTurn(currentTurn))
 
-    }, [])
+    }, [socket])
 
     const handleClick = (index) => {
-        socket.emit('move', index)
-        if (clickedCells[index] !== null || win) return;
-        if (!isMyTurn) return;
-        // setIsXNext(!isXNext);
+        console.log('Cell clicked:', index);
+        if (isWin !== null) {
+            return;
+        }
+        console.log('Valid move, emitting "move" event...');
+        socket.emit('move', index);
     };
 
-    const checkWinner = () => {
-        const rootOfAmt = Math.sqrt(amtOfCards);
+    useEffect(() => {
+        if (isWin) {
+            console.log(`${isWin} is the winner`);
+            setBColor('#D1D1D1');
+            updateCellBackground();
+        }
+    }, [isWin])
 
-        // Check rows
-        for (let i = 0; i < rootOfAmt; i++) {
-            let row = [];
-            for (let j = 0; j < rootOfAmt; j++) {
-                row.push(i * rootOfAmt + j);
-            }
-            if (row.every(cellIndex => clickedCells[cellIndex] === clickedCells[row[0]] && clickedCells[row[0]] !== null)) {
-                setWinCombo(row);
-                return true;
-            }
-        }
 
-        // Check columns
-        for (let i = 0; i < rootOfAmt; i++) {
-            let col = [];
-            for (let j = 0; j < rootOfAmt; j++) {
-                col.push(j * rootOfAmt + i);
-            }
-            if (col.every(cellIndex => clickedCells[cellIndex] === clickedCells[col[0]] && clickedCells[col[0]] !== null)) {
-                setWinCombo(col);
-                return true;
-            }
-        }
-
-        // Check diagonals
-        let diagonal1 = [];
-        let diagonal2 = [];
-        for (let i = 0; i < rootOfAmt; i++) {
-            diagonal1.push(i * rootOfAmt + i);
-            diagonal2.push(i * rootOfAmt + (rootOfAmt - 1 - i));
-        }
-        if (diagonal1.every(cellIndex => clickedCells[cellIndex] === clickedCells[diagonal1[0]] && clickedCells[diagonal1[0]] !== null)) {
-            setWinCombo(diagonal1);
-            return true;
-        }
-        if (diagonal2.every(cellIndex => clickedCells[cellIndex] === clickedCells[diagonal2[0]] && clickedCells[diagonal2[0]] !== null)) {
-            setWinCombo(diagonal2);
-            return true;
-        }
-
-        return false;
-    };
 
     const updateCellBackground = () => {
-        // Implement cell background update logic
     };
 
     const renderGridItem = (index) => (
@@ -133,43 +92,77 @@ export default BoardPlayers;
 
 
 
-// const amtOfCards = 9;
-// const [clickedCards, setClickedCards] = useState(Array(amtOfCards).fill(null));
-// const [bColor, setBColor] = useState(null)
-// const [isXNext, setIsXNext] = useState(false);
-// const [win, setWin] = useState(false);
-// const [xClicks, setXClicks] = useState([]);
-// const [oClicks, setOClicks] = useState([]);
-// const [winCombo, setWinCombo] = useState(null)
-// const [notWinIndex, setNotWinIndex] = useState([]);
-// const [options, setOptions] = useState([<ShapeX />, <ShapeO />]);
 
-//     const backCardComponents = clickedCards.map((shape, index) => (
-//         <div onClick={() => handleClick(index)} key={index}>
-//             <BackCard width={'80px'} height={'80px'} color={shape ? null : bColor}>
-//                 <div>
-//                     {shape}
-//                 </div>
-//             </BackCard>
-//         </div>
-//     ));
-//     return (
-//         <div className={styles.container}>
-//             <div className={styles.yellowBlock}></div>
-//             <div className={styles.wrapper}>
-//                 <Wrapper>
-//                     <div className={styles.gridContainer}>
-//                         {backCardComponents.map((card, index) => (
-//                             <div key={index} className={styles.gridItem}>
-//                                 {card}
-//                             </div>
-//                         ))}
-//                     </div>
-//                 </Wrapper>
-//             </div>
-//             <div className={styles.button}>
-//                 <MainButton width={'170px'} height={'70px'} text={'BACK'} />
-//             </div>
-//         </div>
-//     )
+
+
+
+
+
+// function checkWinner(index, gridSize, clickedCells) {
+//     const rootOfGridSize = Math.sqrt(gridSize);
+//     const row = Math.floor(index / rootOfGridSize);
+//     const col = index % rootOfGridSize;
+//     const cellValue = clickedCells[index];
+//     let winCombo = [];
+
+//     // Check row
+//     winCombo = [];
+//     for (let i = 0; i < rootOfGridSize; i++) {
+//         const cellIndex = row * rootOfGridSize + i;
+//         if (clickedCells[cellIndex] !== cellValue) {
+//             break;
+//         }
+//         console.log({ cellIndex, cellValue, row, col });
+//         winCombo.push(cellIndex);
+//     }
+//     if (winCombo.length === rootOfGridSize) {
+//         console.log(1)
+//         return winCombo;
+//     }
+
+//     // Check column
+//     winCombo = [];
+//     for (let i = 0; i < rootOfGridSize; i++) {
+//         const cellIndex = i * rootOfGridSize + col;
+//         if (clickedCells[cellIndex] !== cellValue) {
+//             break;
+//         }
+//         winCombo.push(cellIndex);
+//     }
+//     if (winCombo.length === rootOfGridSize) {
+//         console.log(2)
+//         return winCombo;
+//     }
+
+//     if (row === col) {
+//         winCombo = [];
+//         for (let i = 0; i < rootOfGridSize; i++) {
+//             const cellIndex = i * rootOfGridSize + i;
+//             if (clickedCells[cellIndex] !== cellValue) {
+//                 break;
+//             }
+//             winCombo.push(cellIndex);
+//         }
+//         if (winCombo.length === rootOfGridSize) {
+//             console.log(3)
+//             return winCombo;
+//         }
+//     }
+
+//     if (row + col === rootOfGridSize - 1) {
+//         winCombo = [];
+//         for (let i = 0; i < rootOfGridSize; i++) {
+//             const cellIndex = i * rootOfGridSize + (rootOfGridSize - 1 - i);
+//             if (clickedCells[cellIndex] !== cellValue) {
+//                 break;
+//             }
+//             winCombo.push(cellIndex);
+//         }
+//         if (winCombo.length === rootOfGridSize) {
+//             console.log(4)
+//             return winCombo;
+//         }
+//     }
+
+//     return null;
 // }

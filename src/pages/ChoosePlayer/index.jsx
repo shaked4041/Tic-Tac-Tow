@@ -9,7 +9,7 @@ import MainButton from '../../components/MainButton';
 import { useNavigate } from 'react-router-dom';
 import useSocket from '../../socket';
 
-export default function ChoosePlayer({ setIsXNext }) {
+export default function ChoosePlayer() {
 
   const socket = useSocket();
   const nav = useNavigate()

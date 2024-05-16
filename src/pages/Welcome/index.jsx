@@ -4,10 +4,9 @@ import ShapeO from '../../components/ShapeO'
 import ShapeX from '../../components/ShapeX'
 import { useNavigate } from "react-router-dom"
 
-
 export default function Welcome() {
-
   const nav = useNavigate()
+
 
   const handleClick = () =>{
     nav('/menu')

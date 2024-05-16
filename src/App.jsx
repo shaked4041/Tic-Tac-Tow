@@ -24,6 +24,7 @@ export default function App() {
     <Routes>
     <Route path="/" element={<Welcome/>}/>
     <Route path="/menu" element={<Menu/>}/>
+    <Route path="/setting" element={<Setting/>}/>
     <Route path="/joinGame" element={<JoinGame/>}/>
     <Route path="/waiting/:roomNumber" element={<Waiting/>}/>
     <Route path="/choosePlayer" element={<ChoosePlayer />}/>
@@ -31,7 +32,7 @@ export default function App() {
     <Route path="/waitingJoin" element={<WaitingJoin/>}/>
     </Routes>
         </div>
-              </SocketProvider>
+             </SocketProvider>
       )
     }
     
