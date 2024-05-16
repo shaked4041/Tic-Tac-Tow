@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import BackButton from '../../components/BackButton';
 import styles from './style.module.scss';
 import Wrapper from '../../components/Wrapper';
@@ -7,13 +7,30 @@ import ShapeO from '../../components/ShapeO';
 import BackCard from '../../components/BackCard';
 import MainButton from '../../components/MainButton';
 import { useNavigate } from 'react-router-dom';
+import useSocket from '../../socket';
 
 export default function ChoosePlayer() {
+
+  const socket = useSocket();
+  const nav = useNavigate()
+
   const [x, setX] = useState(0);
   const [o, setO] = useState(0);
-  const [chosenPlayer, setChosenPlayer] = useState(x == 1 ? x : o == 1 ? o : null);
+  const [chosenPlayer, setChosenPlayer] = useState(x == 1 ? 'x' : o == 1 ? 'o' : null);
 
-  const nav = useNavigate()
+
+  const handlePlay = () => {
+    socket.emit('choosePlayer', chosenPlayer);
+    socket.on('choosePlayer');
+  };
+
+
+  useEffect(() => {
+    socket.on('startPlay', () => {
+      // setIsXNext(chosenPlayer === 'x' ? true : false)
+      nav('/boardPlayers');
+    })
+  }, [socket])
 
   const btnTitel = "Let’s play"
   const btnH = "80px"
@@ -26,6 +43,7 @@ export default function ChoosePlayer() {
     } else {
       setX(1)
       setO(-1)
+      setChosenPlayer('x')
     }
   }
   const handleO = () => {
@@ -35,6 +53,7 @@ export default function ChoosePlayer() {
     } else {
       setX(-1)
       setO(1)
+      setChosenPlayer('o')
     }
   }
 
@@ -70,7 +89,7 @@ export default function ChoosePlayer() {
       </div >
 
       <div className={styles.btn}>
-        <MainButton text={btnTitel} height={btnH} width={btnW} onClick={()=> nav('/boardPlayers')}/>
+        <MainButton text={btnTitel} height={btnH} width={btnW} onClick={handlePlay} />
       </div>
 
     </div >

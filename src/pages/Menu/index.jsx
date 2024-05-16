@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import SetButton from '../../components/SetButton';
 
 
-export default function index() {
+export default function Menu() {
   const nav = useNavigate()
 
   const text1 = "play solo"
